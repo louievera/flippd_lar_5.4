@@ -271,9 +271,23 @@ class BusinessRatingController extends Controller
 
    public function featuredComment(Request $request)
    {
-     $ids = explode(",",$request->id);     
+     $ids = explode(",",$request->id);
      $res = BusinessRating::setFeaturedComment($request,$ids);
 
-     return $res;
+     if($res->count() != 0)
+     {
+       return json_encode([
+         'status' => 200,
+         'method' => 'featured_comments',
+         'message' => 'success',
+         "data" => $res ]);
+     }
+
+     return json_encode([
+       'status' => 204,
+       'method' => 'featured_comments',
+       'message' => 'unsuccessful',
+       "data" => "" ]);
+
    }
 }
