@@ -9,7 +9,7 @@ use DB;
 
 class restaurantCmsController extends Controller
 {
-    public function list()
+    public function viewList()
     {
       $results = restaurant::getRestaurant();
       return view("restaurantList",["results"=>$results]);
